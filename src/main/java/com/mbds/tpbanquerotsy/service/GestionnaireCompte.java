@@ -55,10 +55,10 @@ public class GestionnaireCompte {
 
     @Transactional
     public void transfert(CompteBancaire source, CompteBancaire destination, int montant) {
-        source = em.merge(source);
         source.retirer(montant);
-        destination = em.merge(destination);
         destination.deposer(montant);
+        update(source);
+        update(destination);
     }
 
     public CompteBancaire getCompte(Long id) {
@@ -67,19 +67,23 @@ public class GestionnaireCompte {
 
     @Transactional
     public void deposer(CompteBancaire compte, int montant) {
-        compte = em.merge(compte);
         compte.deposer(montant);
+        update(compte);
     }
 
     @Transactional
     public void retirer(CompteBancaire compte, int montant) {
-        compte = em.merge(compte);
         compte.retirer(montant);
+        update(compte);
     }
     
     @Transactional
     public void supprimer(CompteBancaire compte){
         em.remove(em.merge(compte));
+    }
+    @Transactional
+    public CompteBancaire update(CompteBancaire compte) {
+        return em.merge(compte);
     }
 
 }

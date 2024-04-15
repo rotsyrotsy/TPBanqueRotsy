@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_default.xhtml">
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:viewParam name="idCompte" value="#{modifierCompte.idCompte}"
+                                 required="true"/>
+                    <f:viewAction action="#{modifierCompte.loadCompte}"/>
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="top">
+                Modifier le nom du possesseur d'un compte
+            </ui:define>
+
+            <ui:define name="content">
+                <h1>Modifier le nom de #{modifierCompte.compteBancaire.nom}</h1>
+                <h:form id="form">
+                    <h:panelGrid columns="3">
+                        Id : 
+                        <h:inputText id="id" size="3" value="#{modifierCompte.compteBancaire.id}" required="true"
+                                     requiredMessage="Le champ ID est obligatoire." readonly="true"/>
+                        <h:message for="id"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="3">
+                        Nom du titulaire : 
+                        <h:inputText id="nom" size="3" value="#{modifierCompte.compteBancaire.nom}" required="true"/>
+                        <h:message for="nom"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="3">
+                        Solde : 
+                        <h:inputText id="solde" size="3" value="#{modifierCompte.compteBancaire.solde}" required="true" readonly="true"/>
+                        <h:message for="solde"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Valider" action="#{modifierCompte.updateCompte()}"/>
+                </h:form>
+                <h:messages infoStyle="color: green;" errorStyle="color:red;"/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
