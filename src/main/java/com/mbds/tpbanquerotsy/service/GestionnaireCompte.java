@@ -54,7 +54,7 @@ public class GestionnaireCompte {
     }
 
     @Transactional
-    public void transfert(CompteBancaire source, CompteBancaire destination,int montant) {
+    public void transfert(CompteBancaire source, CompteBancaire destination, int montant) {
         source = em.merge(source);
         source.retirer(montant);
         destination = em.merge(destination);
@@ -63,6 +63,18 @@ public class GestionnaireCompte {
 
     public CompteBancaire getCompte(Long id) {
         return em.find(CompteBancaire.class, id);
+    }
+
+    @Transactional
+    public void deposer(CompteBancaire compte, int montant) {
+        compte = em.merge(compte);
+        compte.deposer(montant);
+    }
+
+    @Transactional
+    public void retirer(CompteBancaire compte, int montant) {
+        compte = em.merge(compte);
+        compte.retirer(montant);
     }
 
 }
