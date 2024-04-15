@@ -35,15 +35,10 @@ public class Init {
             @Observes
             @Initialized(ApplicationScoped.class) ServletContext context) {
         if (this.gestionnaireCompte.nbComptes() == 0) {
-            CompteBancaire compteJohn = new CompteBancaire("John Lennon", 150000);
-            CompteBancaire comptePaul = new CompteBancaire("Paul McCartney", 950000);
-            CompteBancaire compteRingo = new CompteBancaire("Ringo Starr", 20000);
-            CompteBancaire compteGeorges = new CompteBancaire("Georges Harrisson", 100000);
-
-            this.gestionnaireCompte.creerCompte(compteJohn);
-            this.gestionnaireCompte.creerCompte(comptePaul);
-            this.gestionnaireCompte.creerCompte(compteRingo);
-            this.gestionnaireCompte.creerCompte(compteGeorges);
+            this.gestionnaireCompte.creerCompte(new CompteBancaire("John Lennon", 150000));
+            this.gestionnaireCompte.creerCompte(new CompteBancaire("Paul McCartney", 950000));
+            this.gestionnaireCompte.creerCompte(new CompteBancaire("Ringo Starr", 20000));
+            this.gestionnaireCompte.creerCompte(new CompteBancaire("Georges Harrisson", 100000));
         }
     }
 }

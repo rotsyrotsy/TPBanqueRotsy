@@ -6,9 +6,7 @@ package com.mbds.tpbanquerotsy.service;
 
 import com.mbds.tpbanquerotsy.entity.CompteBancaire;
 import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -34,7 +32,7 @@ import java.util.List;
             "driverClass=com.mysql.cj.jdbc.Driver"
         }
 )
-@Dependent
+@ApplicationScoped
 public class GestionnaireCompte {
 
     @PersistenceContext(unitName = "banquePU")
@@ -46,7 +44,7 @@ public class GestionnaireCompte {
     }
 
     public List<CompteBancaire> getAllComptes() {
-        TypedQuery<CompteBancaire> query = em.createNamedQuery("CompteBancaire.findAll", CompteBancaire.class);
+        TypedQuery query = em.createNamedQuery("CompteBancaire.findAll", CompteBancaire.class);
         return query.getResultList();
     }
 
