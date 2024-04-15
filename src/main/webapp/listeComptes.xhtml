@@ -32,7 +32,7 @@
                                              style="width:150px"/>
                             </p:outputPanel>
                         </f:facet>
-                        <p:column>
+                        <p:column sortBy="#{item.id}">
                             <f:facet name="header">
                                 <h:outputText value="Id"/>
                             </f:facet>
@@ -54,7 +54,7 @@
                         </p:column>
                     </p:dataTable>
                 </h:form>
-                <h:messages/>
+                <h:messages infoStyle="color: green;" errorStyle="display:none;"/>
             </ui:define>
 
         </ui:composition>
