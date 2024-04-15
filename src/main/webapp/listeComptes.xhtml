@@ -52,9 +52,19 @@
                             </f:facet>
                             <h:outputText value="#{item.solde}"/>
                         </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Opérations"/>
+                            </f:facet>
+                            <h:commandLink action="#{listeComptes.supprimerCompte(item)}"
+                                           title="Supprimer le compte de #{item.nom}">
+                                <h:graphicImage name="images/del.png" />
+                            </h:commandLink>
+                        </p:column>
                     </p:dataTable>
                 </h:form>
-                <h:messages infoStyle="color: green;" errorStyle="display:none;"/>
+                <h:messages infoStyle="color: green;" errorStyle="color:red;"/>
             </ui:define>
 
         </ui:composition>

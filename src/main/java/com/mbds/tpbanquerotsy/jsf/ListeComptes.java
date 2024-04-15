@@ -5,6 +5,7 @@
 package com.mbds.tpbanquerotsy.jsf;
 
 import com.mbds.tpbanquerotsy.entity.CompteBancaire;
+import com.mbds.tpbanquerotsy.jsf.util.Util;
 import com.mbds.tpbanquerotsy.service.GestionnaireCompte;
 import jakarta.inject.Named;
 import java.util.List;
@@ -19,25 +20,33 @@ import java.io.Serializable;
 @Named(value = "listeComptes")
 @ViewScoped
 public class ListeComptes implements Serializable {
-    private List<CompteBancaire> compteList;  
 
-  @Inject
-  private GestionnaireCompte gestionnaireCompte;  
-        
+    private List<CompteBancaire> compteList;
+
+    @Inject
+    private GestionnaireCompte gestionnaireCompte;
+
     /**
      * Creates a new instance of ListeComptes
      */
     public ListeComptes() {
     }
-    
-    /** 
-   * Retourne la liste des comptes pour affichage dans une DataTable.
-     * @return 
-   */  
-  public List<CompteBancaire> getAllComptes() {
-    if (compteList == null) {
-      compteList = gestionnaireCompte.getAllComptes();
+
+    /**
+     * Retourne la liste des comptes pour affichage dans une DataTable.
+     *
+     * @return
+     */
+    public List<CompteBancaire> getAllComptes() {
+        if (compteList == null) {
+            compteList = gestionnaireCompte.getAllComptes();
+        }
+        return compteList;
     }
-    return compteList;
-  }  
+
+    public String supprimerCompte(CompteBancaire compte) {
+        gestionnaireCompte.supprimer(compte);
+        Util.addFlashInfoMessage("Compte de " + compte.getNom() + " supprimé");
+        return "listeComptes?faces-redirect=true";
+    }
 }
