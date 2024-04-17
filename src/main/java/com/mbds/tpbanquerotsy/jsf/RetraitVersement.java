@@ -16,6 +16,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
 /**
@@ -29,6 +30,7 @@ public class RetraitVersement implements Serializable {
     private Long idCompte;
     private CompteBancaire compteBancaire;
     private String typeMouvement;
+    @PositiveOrZero
     private int montant;
     
     public String getTypeMouvement() {

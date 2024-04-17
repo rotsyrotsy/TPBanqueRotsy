@@ -10,6 +10,7 @@ import com.mbds.tpbanquerotsy.service.GestionnaireCompte;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
 /**
@@ -22,6 +23,7 @@ public class Transfert implements Serializable {
 
     private Long idSource;
     private Long idDestinataire;
+    @PositiveOrZero
     private int montant;
     @Inject
     GestionnaireCompte gestionnaireCompte;
