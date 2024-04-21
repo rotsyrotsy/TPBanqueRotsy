@@ -33,16 +33,18 @@ public class CompteBancaire implements Serializable {
     private String nom;
 
     private int solde;
-    
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OperationBancaire> operations = new ArrayList<>(); // initialisation de la liste des operations qui n'est pas encore injectée
 
-    public CompteBancaire() {}
-    
+    public CompteBancaire() {
+        this.operations.add(new OperationBancaire("Création de compte", solde));
+    }
+
     public CompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
-        this.operations.add(new OperationBancaire("Création de compte",solde));
+        this.operations.add(new OperationBancaire("Création de compte", solde));
     }
 
     /**
@@ -84,9 +86,10 @@ public class CompteBancaire implements Serializable {
     public Long getId() {
         return id;
     }
-    public List<OperationBancaire> getOperations() {  
-      return operations;  
-    } 
+
+    public List<OperationBancaire> getOperations() {
+        return operations;
+    }
 
     @Override
     public int hashCode() {
@@ -115,7 +118,7 @@ public class CompteBancaire implements Serializable {
 
     public void deposer(int montant) {
         solde += montant;
-        this.operations.add(new OperationBancaire("Crédit",montant));
+        this.operations.add(new OperationBancaire("Crédit", montant));
     }
 
     public void retirer(int montant) {
@@ -124,7 +127,7 @@ public class CompteBancaire implements Serializable {
         } else {
             solde = 0;
         }
-        this.operations.add(new OperationBancaire("Débit",-montant));
+        this.operations.add(new OperationBancaire("Débit", -montant));
     }
 
 }
