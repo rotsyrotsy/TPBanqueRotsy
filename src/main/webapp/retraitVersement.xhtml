@@ -26,9 +26,9 @@
                     <h:panelGrid columns="3">
                         Type du mouvement : 
                         <h:selectOneRadio id="typeMouvement"
-                              value="#{retraitVersement.typeMouvement}"
-                              required="true"
-                              layout="pageDirection">
+                                          value="#{retraitVersement.typeMouvement}"
+                                          required="true"
+                                          layout="pageDirection">
                             <f:selectItem itemValue="ajout" itemLabel="Ajout"/>
                             <f:selectItem itemValue="retrait" itemLabel="Retrait"/>
                         </h:selectOneRadio>
@@ -42,8 +42,8 @@
                     </h:panelGrid>
                     <h:commandButton value="Valider" action="#{retraitVersement.validerMouvement()}"/>
                 </h:form>
+                <h:messages infoStyle="color: green;" errorStyle="color:red;"/>
             </ui:define>
-
         </ui:composition>
 
     </body>
