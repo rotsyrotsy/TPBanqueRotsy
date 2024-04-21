@@ -26,8 +26,6 @@ public class OperationBancaire implements Serializable {
     private String description;
     private LocalDateTime dateOperation;
     private int montant;
-    @ManyToOne
-    private CompteBancaire compteBancaire;
 
     public LocalDateTime getDateOperation() {
         return dateOperation;
